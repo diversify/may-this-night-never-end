@@ -15,11 +15,11 @@ class VenueController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
-	$oauthToken = Config::get('other.access_token');
-	$url = 'https://api.foursquare.com/v2/venues/search?ll={$latitude},{$longitude}&oauth_token='.$oauthToken.'&categoryId={$categoryId}&v=20141122';
+	public $oauthToken = Config::get('other.access_token');
+	public $url = 'https://api.foursquare.com/v2/venues/search?ll={$latitude},{$longitude}&oauth_token='.$oauthToken.'&categoryId={$categoryId}&v=20141122';
 	
 
-	$venueCategories = array(
+	public $venueCategories = array(
 		'rock' => '4bf58dd8d48988d1e9931735',
 		'club' => '52e81612bcbc57f1066b7a35', //currently: Club House, nightlife => 4d4b7105d754a06376d81259
 		'dinner' => '4d4b7105d754a06374d81259',
