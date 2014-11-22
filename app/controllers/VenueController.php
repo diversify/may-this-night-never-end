@@ -51,7 +51,7 @@ class VenueController extends BaseController {
 				$response['status'] = 'success';
 				$response['message'] = 'Here you go!';
 				$responseObj = json_decode($responseFromFsq->body);
-				$response['data'] = $responseObj->response->venues;
+				$response['data'] = array('asfas');
 				// if (sizeof(!$responseJson)) 
 				// {
 
