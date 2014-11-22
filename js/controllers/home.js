@@ -11,10 +11,15 @@ nightNeverEnd.controller('HomeCtrl', ['$scope', '$http', '$routeParams',
           // success
           console.log(position);
           userLocation = position;
+          loginWithSpotify();
         },
         function () {
           console.log('No location!');
         });
+
+    };
+
+    $scope.loginWithSpotify = function() {
 
     };
   }]);
