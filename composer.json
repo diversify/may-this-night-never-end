@@ -5,6 +5,7 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
+		"rmccue/requests": ">=1.0",
 		"laravel/framework": "4.2.*"
 	},
 	"autoload": {

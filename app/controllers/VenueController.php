@@ -1,6 +1,6 @@
 <?php
 
-class HomeController extends BaseController {
+class VenueController extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,9 +15,16 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function getVenues()
 	{
-		return View::make('hello');
-	}
+		
+		if(Input::has('latitude') && Input::has('longitude') && Input::has('interests'))
+		{
+			
+		}
+		else
+		{
 
+		}
+	}
 }
