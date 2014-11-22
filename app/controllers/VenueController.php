@@ -45,7 +45,19 @@ class VenueController extends BaseController {
 			$this->url = str_replace("{#longitude}", Input::get('longitude'), $this->url);
 			$this->url = str_replace("{#categoryId}", $this->venueCategories[Input::get('interest')], $this->url);
 			$this->url = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->url);
-			$response = Requests::get('https://github.com/timeline.json');
+			$response = Requests::get($this->url);
+			if ($response->status_code == 200) 
+			{
+				return Response::json($response->body);
+				if (sizeof(!$responseJson)) 
+				{
+
+				}
+			}
+			else
+			{
+				$response['message'] = 'External api error occured';
+			}
 			var_dump($response->body);
 		}
 		return Response::json($response);
