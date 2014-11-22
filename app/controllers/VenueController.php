@@ -43,7 +43,7 @@ class VenueController extends BaseController {
 		{
 			$this->url = str_replace("{#latitude}", Input::get('latitude'), $this->url);
 			$this->url = str_replace("{#longitude}", Input::get('longitude'), $this->url);
-			$this->url = str_replace("{#categoryId}", $venueCategories[Input::get('interest')], $this->url);
+			$this->url = str_replace("{#categoryId}", $this->venueCategories[Input::get('interest')], $this->url);
 			$this->url = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->url);
 			$response = Requests::get('https://github.com/timeline.json');
 			var_dump($response->body);
