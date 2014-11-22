@@ -50,10 +50,10 @@ class VenueController extends BaseController {
 			{
 				$responseOfMethod = Response::make($response->body);
 				$responseOfMethod->header('Content-Type', 'application/json');
-				if (sizeof(!$responseJson)) 
-				{
+				// if (sizeof(!$responseJson)) 
+				// {
 
-				}
+				// }
 			}
 			else
 			{
