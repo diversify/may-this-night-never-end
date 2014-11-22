@@ -4,6 +4,7 @@
 * Description
 */
 var nightNeverEnd = angular.module('nightNeverEnd', ['ngRoute']);
+var userLocation = {};
 
 nightNeverEnd.config(['$routeProvider',
   function($routeProvider) {
