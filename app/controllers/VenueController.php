@@ -49,8 +49,7 @@ class VenueController extends BaseController {
 			if ($response->status_code == 200) 
 			{
 				$responseObj = json_decode($response->body);
-				$responseOfMethod = Response::json($responseObj->response->venues);
-				$responseOfMethod->header('Content-Type', 'application/json');
+				$response['data'] = Response::json($responseObj->response->venues);
 				// if (sizeof(!$responseJson)) 
 				// {
 
@@ -60,8 +59,8 @@ class VenueController extends BaseController {
 			{
 				$response['message'] = 'External api error occured';
 			}
-			var_dump($response->body);
 		}
+		$responseOfMethod->header('Content-Type', 'application/json');
 		return Response::json($response);
 	}
 }
