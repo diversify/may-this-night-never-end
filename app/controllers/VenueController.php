@@ -15,7 +15,7 @@ class VenueController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
-	public $url = 'https://api.foursquare.com/v2/venues/search?ll={$latitude},{$longitude}&oauth_token={$oauthToken}&categoryId={$categoryId}&v=20141122';
+	public $url = 'https://api.foursquare.com/v2/venues/search?ll={#latitude},{#longitude}&oauth_token={#oauthToken}&categoryId={#categoryId}&v=20141122';
 
 	public $venueCategories = array(
 		'rock' => '4bf58dd8d48988d1e9931735',
@@ -41,10 +41,10 @@ class VenueController extends BaseController {
 		}
 		else
 		{
-			$url = str_replace("{$latitude}", Input::get('latitude'), $url);
-			$url = str_replace("{$longitude}", Input::get('longitude'), $url);
-			$url = str_replace("{$categoryId}", $venueCategories[Input::get('interest')], $url);
-			$url = str_replace("{$oauthToken}", Config::get('other.access_token'), $url);
+			$url = str_replace("{#latitude}", Input::get('latitude'), $url);
+			$url = str_replace("{#longitude}", Input::get('longitude'), $url);
+			$url = str_replace("{#categoryId}", $venueCategories[Input::get('interest')], $url);
+			$url = str_replace("{#oauthToken}", Config::get('other.access_token'), $url);
 			$response = Requests::get('https://github.com/timeline.json');
 			var_dump($response->body);
 		}
