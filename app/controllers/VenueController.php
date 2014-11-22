@@ -48,7 +48,8 @@ class VenueController extends BaseController {
 			$response = Requests::get($this->url);
 			if ($response->status_code == 200) 
 			{
-				$responseOfMethod = Response::make($response->body);
+				$responseObj = json_decode($response->body);
+				$responseOfMethod = Response::json($responseObj['response']['venues']);
 				$responseOfMethod->header('Content-Type', 'application/json');
 				// if (sizeof(!$responseJson)) 
 				// {
