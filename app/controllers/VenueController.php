@@ -45,10 +45,10 @@ class VenueController extends BaseController {
 			$this->url = str_replace("{#longitude}", Input::get('longitude'), $this->url);
 			$this->url = str_replace("{#categoryId}", $this->venueCategories[Input::get('interest')], $this->url);
 			$this->url = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->url);
-			$response = Requests::get($this->url);
-			if ($response->status_code == 200) 
+			$responseFromFsq = Requests::get($this->url);
+			if ($responseFromFsq->status_code == 200) 
 			{
-				$responseObj = json_decode($response->body);
+				$responseObj = json_decode($responseFromFsq->body);
 				$response['data'] = json_encode($responseObj->response->venues);
 				// if (sizeof(!$responseJson)) 
 				// {
