@@ -28,12 +28,6 @@
         <!-- Browser favicon -->
         <link rel="shortcut icon" href="favicon.png">
 
-        <!-- For iOS web apps. Delete if not needed.
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="apple-mobile-web-app-title" content="">
-        -->
-
         <!-- CSS files -->
         <!-- Latest compiled and minified bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -44,8 +38,23 @@
         <!-- angular -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular-route.min.js"></script>
+        <script src="js/vendor/angular-google-maps.min.js"></script>
+        <script src="js/vendor/lodash.min.js"></script>
         <!-- Latest compiled and minified Bootstrap JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <!-- make sure map is displayed correctly -->
+        <style type="text/css">
+          html,
+          body,
+          #yield,
+          .angular-google-map,
+          .angular-google-map-container {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+          }
+        </style>
     </head>
     <body ng-app="nightNeverEnd">
         <!--[if lt IE 7]>
@@ -54,18 +63,11 @@
         <div ng-view class="container-fluid">
         </div>
 
+        <div id="yield" ng-view></div>
+
         <!-- Javascripts -->
         <script src="js/main.js"></script>
-        <script src="js/controllers/home.js"></script>
-
-        <!-- Uncomment to include Google Analytics
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
-        -->
-
+        <script src="js/controllers/HomeCtrl.js"></script>
+        <script src="js/controllers/MapCtrl.js"></script>
     </body>
 </html>

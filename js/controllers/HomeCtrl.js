@@ -1,5 +1,5 @@
-nightNeverEnd.controller('HomeCtrl', ['$scope', '$http', '$routeParams',
-  function($scope, $http, $routeParams) {
+nightNeverEnd.controller('HomeCtrl', ['$scope', '$http', '$route', '$routeParams', '$location',
+  function($scope, $http, $route, $routeParams, $location) {
     $scope.message = {};
 
     $scope.message.greeting = 'Hi!';
@@ -10,13 +10,18 @@ nightNeverEnd.controller('HomeCtrl', ['$scope', '$http', '$routeParams',
         function (position) {
           // success
           console.log(position);
+<<<<<<< HEAD:js/controllers/home.js
           userLocation = position;
           loginWithSpotify();
+=======
+          // send user to map path with coords
+          $location.url('/map/' + position.coords.latitude + ',' + position.coords.longitude);
+>>>>>>> a8825c53133b513144ff8ee477f5ceb4563a66f7:js/controllers/HomeCtrl.js
         },
         function () {
+          // no location given
           console.log('No location!');
         });
-
     };
 
     $scope.loginWithSpotify = function() {
