@@ -48,8 +48,9 @@ class VenueController extends BaseController {
 			$responseFromFsq = Requests::get($this->url);
 			if ($responseFromFsq->status_code == 200) 
 			{
-				$responseObj = json_decode($responseFromFsq->body);
 				$response['status'] = 'success';
+				$responseObj = json_decode($responseFromFsq->body);
+				echo gettype($responseObj);
 				unset($response['message']);
 				$response['data'] = json_encode($responseObj->response->venues);
 				// if (sizeof(!$responseJson)) 
