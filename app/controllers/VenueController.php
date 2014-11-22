@@ -62,6 +62,6 @@ class VenueController extends BaseController {
 				$response['message'] = 'External api error occured';
 			}
 		}
-		return Response::json($response, 200, array('Content-Type' => 'application/javascript'));
+		return Response::json($response)->setCallback(Input::get('callback'));;
 	}
 }
