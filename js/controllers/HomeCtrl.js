@@ -1,5 +1,5 @@
-nightNeverEnd.controller('HomeCtrl', ['$scope', '$http', '$routeParams',
-  function($scope, $http, $routeParams) {
+nightNeverEnd.controller('HomeCtrl', ['$scope', '$http', '$route', '$routeParams', '$location',
+  function($scope, $http, $route, $routeParams, $location) {
     $scope.message = {};
 
     $scope.message.greeting = 'Hi!';
@@ -10,11 +10,12 @@ nightNeverEnd.controller('HomeCtrl', ['$scope', '$http', '$routeParams',
         function (position) {
           // success
           console.log(position);
-          userLocation = position;
+          // send user to map path with coords
+          $location.url('/map/' + position.coords.latitude + ',' + position.coords.longitude);
         },
         function () {
+          // no location given
           console.log('No location!');
         });
-
     };
   }]);
