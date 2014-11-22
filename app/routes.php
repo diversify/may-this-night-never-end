@@ -11,7 +11,7 @@
 |
 */
 
-Route::post('/v1/getVenues', 'VenueController@getVenues');
+Route::get('/v1/getVenues', 'VenueController@getVenues');
 App::missing(function($exception)
 {
 	return Response::json(array('status' => 'failed', 'message' => 'Endpoint not found!'));
