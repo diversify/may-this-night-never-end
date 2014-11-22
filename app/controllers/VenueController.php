@@ -60,7 +60,7 @@ class VenueController extends BaseController {
 				$response['message'] = 'External api error occured';
 			}
 		}
-		$responseOfMethod->header('Content-Type', 'application/json');
+		$response->header('Content-Type', 'application/json');
 		return Response::json($response);
 	}
 }
