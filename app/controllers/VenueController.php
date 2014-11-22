@@ -49,7 +49,7 @@ class VenueController extends BaseController {
 			if ($response->status_code == 200) 
 			{
 				$responseObj = json_decode($response->body);
-				$response['data'] = Response::json($responseObj->response->venues);
+				$response['data'] = json_encode($responseObj->response->venues);
 				// if (sizeof(!$responseJson)) 
 				// {
 
