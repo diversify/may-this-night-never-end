@@ -15,7 +15,8 @@ class VenueController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
-	public $url = 'https://api.foursquare.com/v2/venues/search?ll={#latitude},{#longitude}&oauth_token={#oauthToken}&categoryId={#categoryId}&radius={#radius}&v=20141122';
+	public $urlForFsq = 'https://api.foursquare.com/v2/venues/search?ll={#latitude},{#longitude}&oauth_token={#oauthToken}&categoryId={#categoryId}&radius={#radius}&v=20141122';
+	public $urlForSK = 'http://api.songkick.com/api/3.0/search/locations.json?location=geo:{#latitude},{#longitude}&apikey={#apiKeySK}';
 
 	public $venueCategories = array(
 		'rock' => '4bf58dd8d48988d1e9931735',
@@ -31,30 +32,30 @@ class VenueController extends BaseController {
 		{
 			$response['message'] = 'Latitude is required.';
 		}
-		if(!Input::has('longitude'))
+		else if(!Input::has('longitude'))
 		{
 			$response['message'] = 'Longitude is required';
 		}
 		else if(!Input::has('interest'))
 		{
-			$response['interest'] = 'One interest is required';
+			$response['message'] = 'One interest is required';
 		}
 		else
 		{
-			$this->url = str_replace("{#latitude}", Input::get('latitude'), $this->url);
-			$this->url = str_replace("{#longitude}", Input::get('longitude'), $this->url);
-			$this->url = str_replace("{#categoryId}", $this->venueCategories[Input::get('interest')], $this->url);
-			$this->url = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->url);
-			$this->url = str_replace("{#radius}", '5000', $this->url);
-			$responseFromFsq = Requests::get($this->url);
+			$this->urlForFsq = str_replace("{#latitude}", Input::get('latitude'), $this->urlForFsq);
+			$this->urlForFsq = str_replace("{#longitude}", Input::get('longitude'), $this->urlForFsq);
+			$this->urlForFsq = str_replace("{#categoryId}", $this->venueCategories[Input::get('interest')], $this->urlForFsq);
+			$this->urlForFsq = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->urlForFsq);
+			$this->urlForFsq = str_replace("{#radius}", '5000', $this->urlForFsq);
+			$responseFromFsq = Requests::get($this->urlForFsq);
 			if ($responseFromFsq->status_code == 200) 
 			{
 				$responseObj = json_decode($responseFromFsq->body);
 				$response['data'] = $responseObj->response->venues;
 				if (!sizeof($response['data'])) 
 				{
-					$this->url = str_replace("{#radius}", '7500', $this->url);
-					$responseFromFsqSecTry = Requests::get($this->url);
+					$this->urlForFsq = str_replace("{#radius}", '7500', $this->urlForFsq);
+					$responseFromFsqSecTry = Requests::get($this->urlForFsq);
 					if ($responseFromFsqSecTry->status_code == 200) 
 					{
 						$response['status'] = 'success';
@@ -84,5 +85,34 @@ class VenueController extends BaseController {
 	public function getCategories()
 	{
 		return Response::json(array_keys($this->venueCategories))->setCallback(Input::get('callback'));	
+	}
+	public function getConcerts()
+	{
+
+		$response = array('status' => 'failed', 'message' => '');
+		if (!Input::has('latitude')) 
+		{
+			$response['message'] = 'Latitude is required.';
+		}
+		else if(!Input::has('longitude'))
+		{
+			$response['message'] = 'Longitude is required';
+		}
+		else
+		{
+			$this->urlForSK = str_replace("{#latitude}", Input::get('latitude'), $this->urlForSK);
+			$this->urlForSK = str_replace("{#longitude}", Input::get('longitude'), $this->urlForSK);
+			$this->urlForSK = str_replace("{#apiKeySK}", Config::get('other.api_key_sk'), $this->urlForSK);
+			$reponseFromSK = Requests::get($this->urlForSK);
+
+			if ($reponseFromSK->status_code == 200) 
+			{
+				$responseObj = json_decode($reponseFromSK->body);
+				$response['data'] = $responseObj->resultsPage->results;
+				$response['status'] = 'success';
+				$response['message'] = 'Here you go!';
+			}
+		}
+		return Response::json($response)->setCallback(Input::get('callback'));
 	}
 }
