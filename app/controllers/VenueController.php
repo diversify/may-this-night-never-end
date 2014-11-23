@@ -16,7 +16,8 @@ class VenueController extends BaseController {
 	|
 	*/
 	public $urlForFsq = 'https://api.foursquare.com/v2/venues/search?ll={#latitude},{#longitude}&oauth_token={#oauthToken}&categoryId={#categoryId}&radius={#radius}&v=20141122';
-	public $urlForSK = 'http://api.songkick.com/api/3.0/search/locations.json?location=geo:{#latitude},{#longitude}&apikey={#apiKeySK}';
+	public $urlForSK = 'http://api.songkick.com/api/3.0/events.json?apikey={#apiKeySK}&location=geo:{#latitude},{#longitude}';
+
 
 	public $venueCategories = array(
 		'rock' => '4bf58dd8d48988d1e9931735',
@@ -47,6 +48,7 @@ class VenueController extends BaseController {
 			$this->urlForFsq = str_replace("{#categoryId}", $this->venueCategories[Input::get('interest')], $this->urlForFsq);
 			$this->urlForFsq = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->urlForFsq);
 			$this->urlForFsq = str_replace("{#radius}", '5000', $this->urlForFsq);
+			echo $this->urlForFsq;
 			$responseFromFsq = Requests::get($this->urlForFsq);
 			if ($responseFromFsq->status_code == 200) 
 			{
