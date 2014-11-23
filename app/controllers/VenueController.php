@@ -45,7 +45,12 @@ class VenueController extends BaseController {
 		{
 			$this->urlForFsq = str_replace("{#latitude}", Input::get('latitude'), $this->urlForFsq);
 			$this->urlForFsq = str_replace("{#longitude}", Input::get('longitude'), $this->urlForFsq);
-			$this->urlForFsq = str_replace("{#categoryId}", $this->venueCategories[Input::get('interest')], $this->urlForFsq);
+			$types = explode(',', Input::get('interest'));
+			foreach ($types as $key => $value) 
+			{
+				$categoryIds.',' = $this->venueCategories[$key];
+			}
+			$this->urlForFsq = str_replace("{#categoryId}", $categoryIds, $this->urlForFsq);
 			$this->urlForFsq = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->urlForFsq);
 			$this->urlForFsq = str_replace("{#radius}", '5000', $this->urlForFsq);
 			echo $this->urlForFsq;
