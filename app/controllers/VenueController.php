@@ -83,6 +83,6 @@ class VenueController extends BaseController {
 	}
 	public function getCategories()
 	{
-		return Response::json($this->venueCategories)->setCallback(Input::get('callback'));	
+		return Response::json(array_keys($this->venueCategories))->setCallback(Input::get('callback'));	
 	}
 }
