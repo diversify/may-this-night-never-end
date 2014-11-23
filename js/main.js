@@ -4,7 +4,7 @@
 * Description
 */
 var nightNeverEnd = angular.module('nightNeverEnd', ['ngRoute', 'uiGmapgoogle-maps']);
-var dataApi = 'http://http://104.131.83.96/';
+var dataApi = 'http://104.131.83.96/';
 
 // setup routing
 nightNeverEnd.config(['$routeProvider',

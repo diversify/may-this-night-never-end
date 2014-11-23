@@ -1,0 +1,21 @@
+body
+{
+	background: url(../images/background.jpeg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+}
+.homepage
+{
+	position: relative;
+	max-width: 70%;
+	margin: 10% auto;
+}
+.welcome-text
+{
+	color: white;
+	top: 50%;
+}
+.button-container
+{
+	max-width: 300px;
+	margin: 0 auto;
+}
