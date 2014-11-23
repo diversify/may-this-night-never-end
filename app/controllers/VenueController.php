@@ -54,7 +54,6 @@ class VenueController extends BaseController {
 			$this->urlForFsq = str_replace("{#categoryId}", $categoryIds, $this->urlForFsq);
 			$this->urlForFsq = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->urlForFsq);
 			$this->urlForFsq = str_replace("{#radius}", '5000', $this->urlForFsq);
-			echo $this->urlForFsq;
 			$responseFromFsq = Requests::get($this->urlForFsq);
 			if ($responseFromFsq->status_code == 200) 
 			{
