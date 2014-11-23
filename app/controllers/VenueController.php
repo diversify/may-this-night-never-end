@@ -45,8 +45,7 @@ class VenueController extends BaseController {
 			$this->url = str_replace("{#longitude}", Input::get('longitude'), $this->url);
 			$this->url = str_replace("{#categoryId}", $this->venueCategories[Input::get('interest')], $this->url);
 			$this->url = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->url);
-			$this->url = str_replace("{#radius}", '250', $this->url);
-			echo $this->url;
+			$this->url = str_replace("{#radius}", '5000', $this->url);
 			$responseFromFsq = Requests::get($this->url);
 			if ($responseFromFsq->status_code == 200) 
 			{
@@ -55,7 +54,7 @@ class VenueController extends BaseController {
 				print_r($response['data']);
 				if (!sizeof($response['data'])) 
 				{
-					$this->url = str_replace("{#radius}", '500', $this->url);
+					$this->url = str_replace("{#radius}", '7500', $this->url);
 					$responseFromFsqSecTry = Requests::get($this->url);
 					if ($responseFromFsqSecTry->status_code == 200) 
 					{
