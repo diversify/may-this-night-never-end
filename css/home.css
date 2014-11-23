@@ -23,6 +23,11 @@ body
 {
 	float: left;
 }
+
+.button-container img {
+  max-width: 100%;
+}
+
 .button-container
 {
 	max-width: 300px;
