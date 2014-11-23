@@ -51,7 +51,7 @@ class VenueController extends BaseController {
 			{
 				$responseObj = json_decode($responseFromFsq->body);
 				$response['data'] = $responseObj->response->venues;
-				if (!sizeof(!$responseJson)) 
+				if (!sizeof(!$$response['data'])) 
 				{
 					$this->url = str_replace("{#radius}", '500', $this->url);
 					$responseFromFsq = Requests::get($this->url);
