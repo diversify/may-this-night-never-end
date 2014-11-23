@@ -1,3 +1,8 @@
+@font-face
+{
+	font-family: GothamNarrow-Book;
+	src: url('fonts/GothamNarrow-Book.otf');
+}
 body
 {
 	background: url(../images/tummy.jpg) no-repeat center center fixed;
@@ -14,8 +19,28 @@ body
 	color: white;
 	top: 50%;
 }
+.img
+{
+	float: left;
+}
 .button-container
 {
 	max-width: 300px;
 	margin: 0 auto;
 }
+
+p, h1
+{
+	font-family: GothamNarrow-Book;
+}
+
+/*.button
+{
+	float: left;
+
+}*/
+/*.btn
+{
+	background-color: #80B819 !important;
+	border-color: #80B819 !important;
+}*/
