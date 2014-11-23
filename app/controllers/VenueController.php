@@ -15,7 +15,7 @@ class VenueController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
-	public $url = 'https://api.foursquare.com/v2/venues/search?ll={#latitude},{#longitude}&oauth_token={#oauthToken}&categoryId={#categoryId}&v=20141122&radius={#radius}';
+	public $url = 'https://api.foursquare.com/v2/venues/search?ll={#latitude},{#longitude}&oauth_token={#oauthToken}&categoryId={#categoryId}&radius={#radius}&v=20141122';
 
 	public $venueCategories = array(
 		'rock' => '4bf58dd8d48988d1e9931735',
@@ -46,6 +46,7 @@ class VenueController extends BaseController {
 			$this->url = str_replace("{#categoryId}", $this->venueCategories[Input::get('interest')], $this->url);
 			$this->url = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->url);
 			$this->url = str_replace("{#radius}", '250', $this->url);
+			echo $this->url;
 			$responseFromFsq = Requests::get($this->url);
 			if ($responseFromFsq->status_code == 200) 
 			{
