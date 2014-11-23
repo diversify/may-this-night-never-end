@@ -24,7 +24,8 @@ class VenueController extends BaseController {
 		'club' => '52e81612bcbc57f1066b7a35', //currently: Club House, nightlife => 4d4b7105d754a06376d81259
 		'dinner' => '4d4b7105d754a06374d81259',
 		'jazz' => '4bf58dd8d48988d1e7931735',
-		'piano' => '4bf58dd8d48988d1e8931735'
+		'piano' => '4bf58dd8d48988d1e8931735',
+		'music' => '4bf58dd8d48988d1e5931735'
 	);
 	public function getVenues()
 	{
@@ -49,7 +50,14 @@ class VenueController extends BaseController {
 			$categoryIds = '';
 			foreach ($types as $key => $value) 
 			{
-				$categoryIds.=','.$this->venueCategories[$value];
+				if (array_key_exists($value, $this->venueCategories)) 
+				{
+					$categoryIds.=','.$this->venueCategories[$value];
+				}
+				else
+				{
+					$categoryIds.=','.$this->venueCategories['music'];
+				}
 			}
 			$this->urlForFsq = str_replace("{#categoryId}", $categoryIds, $this->urlForFsq);
 			$this->urlForFsq = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->urlForFsq);
