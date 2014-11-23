@@ -1,5 +1,5 @@
-nightNeverEnd.controller('MapCtrl', ['$scope', '$http', '$route', '$routeParams',
-  function($scope, $http, $route, $routeParams) {
+nightNeverEnd.controller('MapCtrl', ['$scope', '$http', '$route', '$routeParams', '$location',
+  function($scope, $http, $route, $routeParams, $location) {
     var location = $routeParams.coords.split(',');
     var mood = $routeParams.mood;
     $scope.markers = [];
@@ -32,12 +32,18 @@ nightNeverEnd.controller('MapCtrl', ['$scope', '$http', '$route', '$routeParams'
         alert('Could not fetch venue data. Sorry!');
       });
 
+    $scope.mapevents = {
+      center_changed: function(handler) {
+        $location.path('/map/' + handler.center.k + ',' + handler.center.B + ',' + handler.data.map.zoom + '/' + mood);
+      }
+    };
+
     $scope.map = {
       center: {
         latitude: location[0],
         longitude: location[1]
       },
-      zoom: 13
+      zoom: parseInt(location[2]) || 13
     };
     $scope.options = {
       scrollwheel: true

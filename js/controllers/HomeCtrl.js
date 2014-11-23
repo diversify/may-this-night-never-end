@@ -12,7 +12,7 @@ nightNeverEnd.controller('HomeCtrl', ['$scope', '$http', '$route', '$routeParams
           console.log(position);
           loginWithSpotify();
           // send user to map path with coords
-          $location.url('/map/' + position.coords.latitude + ',' + position.coords.longitude + '/rock');
+          $location.url('/map/' + position.coords.latitude + ',' + position.coords.longitude'/rock');
         },
         function () {
           // no location given
