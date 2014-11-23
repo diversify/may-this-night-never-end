@@ -49,7 +49,7 @@ class VenueController extends BaseController {
 			$categoryIds = '';
 			foreach ($types as $key => $value) 
 			{
-				$categoryIds.=','.$this->venueCategories[$key];
+				$categoryIds.=','.$this->venueCategories[$value];
 			}
 			$this->urlForFsq = str_replace("{#categoryId}", $categoryIds, $this->urlForFsq);
 			$this->urlForFsq = str_replace("{#oauthToken}", Config::get('other.access_token'), $this->urlForFsq);
