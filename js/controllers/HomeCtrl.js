@@ -11,7 +11,7 @@ nightNeverEnd.controller('HomeCtrl', ['$scope', '$http', '$route', '$routeParams
           // success
           console.log(position);
           // send user to map path with coords
-          $location.url('/map/' + position.coords.latitude + ',' + position.coords.longitude);
+          $location.url('/map/' + position.coords.latitude + ',' + position.coords.longitude + '/rock');
         },
         function () {
           // no location given

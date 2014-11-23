@@ -4,6 +4,7 @@
 * Description
 */
 var nightNeverEnd = angular.module('nightNeverEnd', ['ngRoute', 'uiGmapgoogle-maps']);
+var dataApi = 'http://http://104.131.83.96/';
 
 // setup routing
 nightNeverEnd.config(['$routeProvider',
@@ -13,7 +14,7 @@ nightNeverEnd.config(['$routeProvider',
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
       }).
-      when('/map/:coords', {
+      when('/map/:coords/:mood', {
         templateUrl: 'views/map.html',
         controller: 'MapCtrl'
       }).
