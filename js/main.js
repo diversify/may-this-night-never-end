@@ -18,6 +18,10 @@ nightNeverEnd.config(['$routeProvider',
         templateUrl: 'views/map.html',
         controller: 'MapCtrl'
       }).
+      when('/moods/:moods', {
+        templateUrl: 'views/location.html',
+        controller: 'LocationCtrl'
+      }).
       otherwise({
         redirectTo: '/home'
       });
@@ -29,3 +33,19 @@ nightNeverEnd.config(function(uiGmapGoogleMapApiProvider) {
     v: '3.17'
   });
 })
+
+// make sure all urls are not reloaded
+nightNeverEnd.run(['$route', '$rootScope', '$location',
+  function($route, $rootScope, $location) {
+    var original = $location.path;
+    $location.path = function(path, reload) {
+      if (reload === false) {
+        var lastRoute = $route.current;
+        var un = $rootScope.$on('$locationChangeSuccess', function () {
+          $route.current = lastRoute;
+          un();
+        });
+      };
+      return original.apply($location, [path]);
+    };
+  }])
